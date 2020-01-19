@@ -39,6 +39,9 @@ class MailConfiguration:
         # Technical e-mail options
         self.mail_host = args['--mail-host']
         self.mail_port = int(args['--mail-port'])
+        
+        self.mail_login = args['--mail-login']
+        self.mail_pass = args['--mail-pass']
 
     @staticmethod
     def _parse_mail_list(mail_str):
@@ -161,9 +164,10 @@ def send_email(
                         mail_configuration.mail_message)
             msg.attach(part)
 
-        with smtplib.SMTP(host=mail_configuration.mail_host,
+        with smtplib.SMTP_SSL(host=mail_configuration.mail_host,
                           port=mail_configuration.mail_port) as smtp_con:
-            smtp_con.starttls()
+            smtp_con.ehlo()
+            smtp_con.login(mail_configuration.mail_login, mail_configuration.mail_pass)
             LOGGER.info("Sending e-mail with report attached.")
             LOGGER.debug("Mail message: %s", msg)
             smtp_con.send_message(msg)
