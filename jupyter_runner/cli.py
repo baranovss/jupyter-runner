@@ -31,6 +31,8 @@
     --mail-do-not-compress  Do not compress attachments inside a zip file.
     --mail-host=<host>  Mail server hostname. [Default: localhost]
     --mail-port=<port>  Mail server port. [Default: 25]
+    --mail-login=<login>  Smtp login.
+    --mail-pass=<pass>  Smtp pass.
     --debug  Enable debug logs
     --help  Display this help
     --version  Display version
