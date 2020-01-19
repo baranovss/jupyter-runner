@@ -163,6 +163,7 @@ def send_email(
 
         with smtplib.SMTP(host=mail_configuration.mail_host,
                           port=mail_configuration.mail_port) as smtp_con:
+            smtp_con.starttls()
             LOGGER.info("Sending e-mail with report attached.")
             LOGGER.debug("Mail message: %s", msg)
             smtp_con.send_message(msg)
