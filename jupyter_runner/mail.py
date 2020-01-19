@@ -167,6 +167,7 @@ def send_email(
         with smtplib.SMTP_SSL(host=mail_configuration.mail_host,
                           port=mail_configuration.mail_port) as smtp_con:
             smtp_con.ehlo()
+            LOGGER.info("login={} pass={}".format(mail_configuration.mail_login, mail_configuration.mail_pass)
             smtp_con.login(mail_configuration.mail_login, mail_configuration.mail_pass)
             LOGGER.info("Sending e-mail with report attached.")
             LOGGER.debug("Mail message: %s", msg)
